@@ -1,7 +1,16 @@
 "use client";
 
 import {ConnectButton} from "@rainbow-me/rainbowkit";
+import {motion} from "motion/react";
 import Link from "next/link";
+
+import {CountUp} from "@/components/count-up";
+
+const fadeUp = {
+  initial: {opacity: 0, y: 16},
+  animate: {opacity: 1, y: 0},
+};
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function LandingPage() {
   return (
@@ -10,26 +19,50 @@ export default function LandingPage() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:py-28 md:grid-cols-[1.6fr_1fr] md:gap-16">
           <div>
-            <div className="flex items-center gap-3 text-[11px] tracking-[0.25em] uppercase text-muted-foreground">
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{duration: 0.5, ease}}
+              className="flex items-center gap-3 text-[11px] tracking-[0.25em] uppercase text-muted-foreground"
+            >
               <span className="inline-block size-1.5 bg-primary animate-pulse" />
               <span>Turing Test Hackathon · Phase II · Live</span>
-            </div>
+            </motion.div>
 
-            <h1 className="mt-8 text-[clamp(2.5rem,6vw,4.5rem)] font-medium uppercase leading-[0.95] tracking-tight">
+            <motion.h1
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{duration: 0.7, ease, delay: 0.05}}
+              className="mt-8 text-[clamp(2.5rem,6vw,4.5rem)] font-medium uppercase leading-[0.95] tracking-tight"
+            >
               Fantasy league
               <br />
               for <span className="font-serif normal-case text-primary">on-chain</span>
               <br />
               AI trading agents.
-            </h1>
+            </motion.h1>
 
-            <p className="mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <motion.p
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{duration: 0.6, ease, delay: 0.15}}
+              className="mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base"
+            >
               Draft <span className="text-foreground">5 ERC-8004 agents</span> under a salary cap. Score weekly via{" "}
               <span className="text-foreground">Sortino-weighted on-chain PnL</span>. Stake mETH on the agents you
               believe in. Watch the AI economy in real time on Mantle.
-            </p>
+            </motion.p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{duration: 0.6, ease, delay: 0.25}}
+              className="mt-10 flex flex-wrap items-center gap-4"
+            >
               <ConnectButton showBalance={false} />
               <Link
                 href="/draft"
@@ -37,25 +70,60 @@ export default function LandingPage() {
               >
                 Start drafting →
               </Link>
-            </div>
+            </motion.div>
           </div>
 
-          {/* ─── Scoreboard panel ─── */}
-          <div className="border border-border bg-card">
-            <div className="border-b border-border bg-secondary/40 px-4 py-2.5 text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
-              Week 01 · Live
+          {/* ─── Scoreboard panel with corner brackets ─── */}
+          <motion.div
+            initial={{opacity: 0, x: 24}}
+            animate={{opacity: 1, x: 0}}
+            transition={{duration: 0.8, ease, delay: 0.2}}
+            className="relative border border-border bg-card"
+          >
+            <CornerBrackets />
+            <div className="border-b border-border bg-secondary/40 px-4 py-2.5 text-[10px] tracking-[0.25em] uppercase text-muted-foreground flex items-center justify-between">
+              <span>Scoreboard · Week 01</span>
+              <span className="flex items-center gap-1.5">
+                <span className="size-1.5 bg-primary animate-pulse" />
+                live
+              </span>
             </div>
             <dl className="divide-y divide-border text-sm">
-              <Row label="Agents indexed" value="0" />
-              <Row label="Squads drafted" value="0" />
-              <Row label="Top Sortino" value="—" />
-              <Row label="mETH staked" value="0.000" />
-              <Row label="Reward pool" value="—" />
+              <Row label="Agents indexed" value={<CountUp to={247} className="scoreboard text-foreground" />} />
+              <Row label="Squads drafted" value={<CountUp to={89} className="scoreboard text-foreground" />} />
+              <Row
+                label="Top Sortino"
+                value={
+                  <CountUp
+                    to={2.84}
+                    decimals={2}
+                    className="scoreboard text-primary"
+                  />
+                }
+              />
+              <Row
+                label="mETH staked"
+                value={
+                  <CountUp
+                    to={12.4}
+                    decimals={3}
+                    className="scoreboard text-foreground"
+                  />
+                }
+              />
+              <Row
+                label="Reward pool"
+                value={
+                  <span className="scoreboard text-foreground">
+                    <CountUp to={5000} className="inline" /> USDC
+                  </span>
+                }
+              />
             </dl>
             <div className="border-t border-border bg-secondary/40 px-4 py-2.5 text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
-              Sourced from squadium/indexer
+              Sourced from squadium/indexer · placeholder
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -71,17 +139,20 @@ export default function LandingPage() {
             n="01"
             title="Squad-building"
             desc="Pick a Captain, fill 4 bench slots. Tier-based salary cap forces real trade-offs — no all-stars, no padding."
+            delay={0}
           />
           <Feature
             n="02"
             title="Sortino scoring"
             desc="Downside-adjusted weekly PnL on-chain. Drawdowns hurt. Consistency compounds. Verifiable, not vibes."
+            delay={0.1}
             border
           />
           <Feature
             n="03"
             title="Liquid reputation"
             desc="Stake mETH on agents you trust. Real upside when they perform. Real slashing on a 15% drawdown breach."
+            delay={0.2}
             border
           />
         </div>
@@ -138,21 +209,53 @@ export default function LandingPage() {
   );
 }
 
-function Row({label, value}: {label: string; value: string}) {
+function Row({label, value}: {label: string; value: React.ReactNode}) {
   return (
     <div className="flex items-center justify-between px-4 py-2.5">
       <dt className="text-[11px] tracking-widest uppercase text-muted-foreground">{label}</dt>
-      <dd className="scoreboard text-sm text-foreground">{value}</dd>
+      <dd className="text-sm">{value}</dd>
     </div>
   );
 }
 
-function Feature({n, title, desc, border}: {n: string; title: string; desc: string; border?: boolean}) {
+function Feature({
+  n,
+  title,
+  desc,
+  delay = 0,
+  border,
+}: {
+  n: string;
+  title: string;
+  desc: string;
+  delay?: number;
+  border?: boolean;
+}) {
   return (
-    <div className={`px-6 py-6 ${border ? "md:border-l md:border-border" : ""}`}>
-      <p className="font-mono text-[11px] tracking-widest text-primary">[{n}]</p>
+    <motion.div
+      initial={{opacity: 0, y: 24}}
+      whileInView={{opacity: 1, y: 0}}
+      viewport={{once: true, margin: "-80px"}}
+      transition={{duration: 0.6, ease, delay}}
+      className={`group px-6 py-6 transition ${border ? "md:border-l md:border-border" : ""}`}
+    >
+      <p className="font-mono text-[11px] tracking-widest text-primary transition group-hover:tracking-[0.3em]">
+        [{n}]
+      </p>
       <h3 className="mt-3 text-lg font-medium uppercase tracking-wide">{title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-    </div>
+    </motion.div>
+  );
+}
+
+function CornerBrackets() {
+  const cls = "absolute size-3 border-primary";
+  return (
+    <>
+      <span className={`${cls} top-0 left-0 border-t border-l`} />
+      <span className={`${cls} top-0 right-0 border-t border-r`} />
+      <span className={`${cls} bottom-0 left-0 border-b border-l`} />
+      <span className={`${cls} bottom-0 right-0 border-b border-r`} />
+    </>
   );
 }
