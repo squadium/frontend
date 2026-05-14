@@ -13,10 +13,12 @@ export function SiteNav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-sm">
+    <header className="sticky top-7 z-30 border-b border-border bg-background/85 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-8 px-6">
         <Link href="/" className="group flex items-center gap-2 text-sm font-medium">
-          <span className="inline-block size-2 bg-primary group-hover:animate-pulse" />
+          <span className="relative inline-block size-2 bg-primary">
+            <span className="absolute inset-0 bg-primary animate-ping opacity-70" />
+          </span>
           <span className="tracking-[0.18em] uppercase">Squadium</span>
         </Link>
 

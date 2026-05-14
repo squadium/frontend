@@ -3,6 +3,7 @@ import {DM_Mono, Newsreader} from "next/font/google";
 
 import {BackgroundFX} from "@/components/background-fx";
 import {SiteNav} from "@/components/site-nav";
+import {TickerBar} from "@/components/ticker-bar";
 
 import {Providers} from "./providers";
 import "./globals.css";
@@ -36,6 +37,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       <body className="min-h-full flex flex-col font-mono relative">
         <Providers>
           <BackgroundFX />
+          <TickerBar />
           <SiteNav />
           {children}
         </Providers>
