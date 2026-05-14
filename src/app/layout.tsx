@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {DM_Mono, Newsreader} from "next/font/google";
 
+import {BackgroundFX} from "@/components/background-fx";
 import {SiteNav} from "@/components/site-nav";
 
 import {Providers} from "./providers";
@@ -32,8 +33,9 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       className={`dark ${dmMono.variable} ${newsreader.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col font-mono">
+      <body className="min-h-full flex flex-col font-mono relative">
         <Providers>
+          <BackgroundFX />
           <SiteNav />
           {children}
         </Providers>
