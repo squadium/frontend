@@ -1,17 +1,20 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import {DM_Mono, Newsreader} from "next/font/google";
 
 import {Providers} from "./providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
+  style: ["italic"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -22,8 +25,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html
+      lang="en"
+      className={`dark ${dmMono.variable} ${newsreader.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+    >
+      <body className="min-h-full flex flex-col font-mono">
         <Providers>{children}</Providers>
       </body>
     </html>
