@@ -1,6 +1,8 @@
 import type {Metadata} from "next";
 import {DM_Mono, Newsreader} from "next/font/google";
 
+import {SiteNav} from "@/components/site-nav";
+
 import {Providers} from "./providers";
 import "./globals.css";
 
@@ -31,7 +33,10 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col font-mono">
-        <Providers>{children}</Providers>
+        <Providers>
+          <SiteNav />
+          {children}
+        </Providers>
       </body>
     </html>
   );
