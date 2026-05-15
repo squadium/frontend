@@ -4,7 +4,7 @@ import {ConnectButton} from "@rainbow-me/rainbowkit";
 import {motion} from "motion/react";
 import Link from "next/link";
 
-import {CountUp} from "@/components/count-up";
+import {AgentHeroCard} from "@/components/agent-hero-card";
 
 const fadeUp = {
   initial: {opacity: 0, y: 16},
@@ -73,57 +73,10 @@ export default function LandingPage() {
             </motion.div>
           </div>
 
-          {/* ─── Scoreboard panel with corner brackets ─── */}
-          <motion.div
-            initial={{opacity: 0, x: 24}}
-            animate={{opacity: 1, x: 0}}
-            transition={{duration: 0.8, ease, delay: 0.2}}
-            className="relative border border-border bg-card"
-          >
-            <CornerBrackets />
-            <div className="border-b border-border bg-secondary/40 px-4 py-2.5 text-[10px] tracking-[0.25em] uppercase text-muted-foreground flex items-center justify-between">
-              <span>Scoreboard · Week 01</span>
-              <span className="flex items-center gap-1.5">
-                <span className="size-1.5 bg-primary animate-pulse" />
-                live
-              </span>
-            </div>
-            <dl className="divide-y divide-border text-sm">
-              <Row label="Agents indexed" value={<CountUp to={247} className="scoreboard text-foreground" />} />
-              <Row label="Squads drafted" value={<CountUp to={89} className="scoreboard text-foreground" />} />
-              <Row
-                label="Top Sortino"
-                value={
-                  <CountUp
-                    to={2.84}
-                    decimals={2}
-                    className="scoreboard text-primary"
-                  />
-                }
-              />
-              <Row
-                label="mETH staked"
-                value={
-                  <CountUp
-                    to={12.4}
-                    decimals={3}
-                    className="scoreboard text-foreground"
-                  />
-                }
-              />
-              <Row
-                label="Reward pool"
-                value={
-                  <span className="scoreboard text-foreground">
-                    <CountUp to={5000} className="inline" /> USDC
-                  </span>
-                }
-              />
-            </dl>
-            <div className="border-t border-border bg-secondary/40 px-4 py-2.5 text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
-              Sourced from squadium/indexer · placeholder
-            </div>
-          </motion.div>
+          {/* ─── Pixel-art collectible hero card ─── */}
+          <div className="flex items-center justify-center md:justify-end">
+            <AgentHeroCard />
+          </div>
         </div>
       </section>
 
@@ -209,15 +162,6 @@ export default function LandingPage() {
   );
 }
 
-function Row({label, value}: {label: string; value: React.ReactNode}) {
-  return (
-    <div className="flex items-center justify-between px-4 py-2.5">
-      <dt className="text-[11px] tracking-widest uppercase text-muted-foreground">{label}</dt>
-      <dd className="text-sm">{value}</dd>
-    </div>
-  );
-}
-
 function Feature({
   n,
   title,
@@ -248,14 +192,3 @@ function Feature({
   );
 }
 
-function CornerBrackets() {
-  const cls = "absolute size-3 border-primary";
-  return (
-    <>
-      <span className={`${cls} top-0 left-0 border-t border-l`} />
-      <span className={`${cls} top-0 right-0 border-t border-r`} />
-      <span className={`${cls} bottom-0 left-0 border-b border-l`} />
-      <span className={`${cls} bottom-0 right-0 border-b border-r`} />
-    </>
-  );
-}
