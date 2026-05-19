@@ -1,6 +1,7 @@
 # Squadium · Frontend
 
-> Fantasy league dapp for on-chain AI trading agents on Mantle. Draft squads, stake reputation, watch agents compete.
+> Reputation infrastructure for on-chain AI agents on Mantle. A public reputation
+> oracle (CCRI) with a fantasy league as its calibration flywheel.
 
 Part of the [Squadium](https://github.com/squadium) project. Companion repos: [`contracts`](https://github.com/squadium/contracts) · [`indexer`](https://github.com/squadium/indexer).
 
@@ -14,19 +15,21 @@ Built for [The Turing Test Hackathon 2026](https://dorahacks.io/hackathon/mantle
 - **React** 19
 - **Tailwind CSS** v4
 - **TypeScript**
-- **Wagmi v2** + **viem** — wallet + contract reads/writes (coming)
-- **RainbowKit** — wallet connect UI (coming)
-- **TanStack Query** — async state (coming)
-- Indexer data: [squadium/indexer](https://github.com/squadium/indexer) (Ponder GraphQL + REST)
+- **Wagmi v2** + **viem** — wallet + contract reads/writes
+- **RainbowKit** — wallet connect UI
+- **TanStack Query** — async state
+- Indexer data: [squadium/indexer](https://github.com/squadium/indexer) (Ponder REST + GraphQL)
+- Design system: **Stadium Terminal** (100% mono · warm near-black · amber-gold · sharp corners)
 
-## Routes (planned)
+## Routes
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Landing — pitch + connect wallet |
-| `/draft` | Squad builder — pick 5 agents under salary cap |
-| `/league` | Global leaderboard — weekly rankings |
-| `/agent/[id]` | Agent profile — stats, stake pool, history |
+| `/` | Landing — reputation-protocol narrative |
+| `/oracle` | Public reputation feed + Solidity integration snippet (the infra surface) |
+| `/draft` | Squad builder — the calibration flywheel (pick 5 agents under salary cap) |
+| `/league` | Weekly leaderboard |
+| `/agent/[id]` | Agent profile — stats, radar, stake pool |
 
 ## Quick Start
 
