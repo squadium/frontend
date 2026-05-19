@@ -37,11 +37,11 @@ export default function LandingPage() {
               transition={{duration: 0.7, ease, delay: 0.05}}
               className="mt-8 text-[clamp(2.5rem,6vw,4.5rem)] font-medium uppercase leading-[0.95] tracking-tight"
             >
-              Fantasy league
+              Reputation
               <br />
-              for <span className="font-serif normal-case text-primary">on-chain</span>
+              <span className="font-serif normal-case text-primary">infrastructure</span>
               <br />
-              AI trading agents.
+              for AI agents.
             </motion.h1>
 
             <motion.p
@@ -51,9 +51,11 @@ export default function LandingPage() {
               transition={{duration: 0.6, ease, delay: 0.15}}
               className="mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base"
             >
-              Draft <span className="text-foreground">5 ERC-8004 agents</span> under a salary cap. Score weekly via{" "}
-              <span className="text-foreground">Sortino-weighted on-chain PnL</span>. Stake mETH on the agents you
-              believe in. Watch the AI economy in real time on Mantle.
+              Squadium scores every on-chain AI agent with a forward, confidence-bounded reputation —
+              published on Mantle as a public good any protocol can read. A{" "}
+              <span className="text-foreground">fantasy league</span> is the calibration flywheel:
+              human drafts crowd-calibrate the model that feeds the{" "}
+              <span className="text-foreground">oracle</span>.
             </motion.p>
 
             <motion.div
@@ -63,13 +65,19 @@ export default function LandingPage() {
               transition={{duration: 0.6, ease, delay: 0.25}}
               className="mt-10 flex flex-wrap items-center gap-4"
             >
-              <ConnectButton showBalance={false} />
+              <Link
+                href="/oracle"
+                className="border border-primary bg-primary px-4 py-2 text-xs tracking-widest uppercase text-primary-foreground hover:opacity-90 transition"
+              >
+                View the oracle →
+              </Link>
               <Link
                 href="/draft"
                 className="border border-border px-4 py-2 text-xs tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition"
               >
-                Start drafting →
+                Calibrate · draft a squad
               </Link>
+              <ConnectButton showBalance={false} />
             </motion.div>
           </div>
 
@@ -90,21 +98,21 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-6xl px-6 py-16 md:grid-cols-3">
           <Feature
             n="01"
-            title="Squad-building"
-            desc="Pick a Captain, fill 4 bench slots. Tier-based salary cap forces real trade-offs — no all-stars, no padding."
+            title="Reputation oracle"
+            desc="Forward, confidence-bounded score per agent — signed on-chain. Thin history reads low confidence, so consumers never act on noise."
             delay={0}
           />
           <Feature
             n="02"
-            title="Sortino scoring"
-            desc="Downside-adjusted weekly PnL on-chain. Drawdowns hurt. Consistency compounds. Verifiable, not vibes."
+            title="Crowd calibration"
+            desc="The fantasy draft is a prediction market. Stake-weighted human signal calibrates the model via a Brier-recalibrated blend."
             delay={0.1}
             border
           />
           <Feature
             n="03"
-            title="Liquid reputation"
-            desc="Stake mETH on agents you trust. Real upside when they perform. Real slashing on a 15% drawdown breach."
+            title="Composable by Mantle"
+            desc="ReputationGatedPool proves it: a lending pool that prices agents by reputation. Any Mantle protocol can read the same feed."
             delay={0.2}
             border
           />
@@ -112,13 +120,13 @@ export default function LandingPage() {
       </section>
 
       <div className="mx-auto max-w-6xl px-6 py-1 text-center text-muted-foreground select-none">
-        ────────────────────── §2 how it scores ─────────────────────
+        ────────────────── §2 the calibration signal ─────────────────
       </div>
 
       {/* ─── SCORING FORMULA ─────────────────────────────────────────── */}
       <section className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-6xl px-6 py-16">
-          <p className="label-mono">Scoring formula</p>
+          <p className="label-mono">Fantasy scoring · the crowd signal</p>
           <pre className="mt-6 overflow-x-auto text-xs leading-relaxed text-foreground sm:text-sm">
             {`Score  =  Σ ( PnL × CaptainWeight × ConsistencyMultiplier )  −  DrawdownPenalty
 
@@ -127,7 +135,8 @@ export default function LandingPage() {
   DrawdownPenalty       = -50%  if weekly DD > 15%`}
           </pre>
           <p className="mt-6 max-w-2xl font-serif text-base text-muted-foreground">
-            We chose Sortino over Sharpe. Upside volatility is not risk. Downside is.
+            Sortino over Sharpe — upside volatility is not risk, downside is. Squad outcomes feed
+            back as the crowd prior the oracle calibrates against.
           </p>
         </div>
       </section>
