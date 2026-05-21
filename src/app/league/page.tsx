@@ -10,13 +10,13 @@ import {chipLabel, fetchLeaderboard, handleForAgent, shortAddr, type SquadRow} f
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const WEEKS: Array<{id: bigint; label: string}> = [
-  {id: 1n, label: "Week 01"},
-  {id: 2n, label: "Week 02"},
-  {id: 0n, label: "All-time"},
+  {id: BigInt(1), label: "Week 01"},
+  {id: BigInt(2), label: "Week 02"},
+  {id: BigInt(0), label: "All-time"},
 ];
 
 export default function LeaguePage() {
-  const [weekId, setWeekId] = useState<bigint>(1n);
+  const [weekId, setWeekId] = useState<bigint>(BigInt(1));
   const {data, isLoading} = useQuery({
     queryKey: ["leaderboard", weekId.toString()],
     queryFn: () => fetchLeaderboard(weekId),
