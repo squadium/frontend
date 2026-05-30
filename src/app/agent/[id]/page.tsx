@@ -258,9 +258,8 @@ function StakePoolPanel({data}: {data: AgentDetail | undefined}) {
         </div>
       </div>
 
-      <p className="mt-10 max-w-2xl font-serif text-sm text-muted-foreground">
-        Reads live from the indexer with a labelled mock fallback; the on-chain badge above hits AgentRegistry directly
-        via wagmi. Stake write actions wire next iteration.
+      <p className="mt-10 font-mono text-[10px] tracking-widest text-muted-foreground/50">
+        // data: live indexer · mock fallback
       </p>
     </section>
   );

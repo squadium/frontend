@@ -25,7 +25,7 @@ export function TickerBar() {
   const loop = [...ticks, ...ticks];
 
   return (
-    <div className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-sm">
+    <div className="sticky top-0 z-40 border-b border-border bg-background">
       <div className="relative flex h-7 items-center overflow-hidden">
         <span className="z-10 flex items-center gap-2 border-r border-border bg-primary px-3 h-full text-[10px] tracking-[0.25em] uppercase text-primary-foreground font-medium">
           <span className="inline-block size-1.5 bg-primary-foreground animate-pulse" />

@@ -63,8 +63,8 @@ export function AgentHeroCard() {
     >
       {/* amber bloom behind card */}
       <div
-        className="absolute -inset-6 -z-10 blur-2xl"
-        style={{background: "radial-gradient(circle at 50% 40%, rgba(232,168,56,0.22), transparent 70%)"}}
+        className="absolute -inset-6 -z-10"
+        style={{filter: "blur(40px)", background: "radial-gradient(circle at 50% 40%, rgba(232,168,56,0.22), transparent 70%)"}}
       />
 
       <div className="relative border border-border bg-card">

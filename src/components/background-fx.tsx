@@ -37,8 +37,9 @@ export function BackgroundFX() {
 
       {/* drifting amber spotlight */}
       <motion.div
-        className="absolute -top-1/4 -left-1/4 size-[120vw] rounded-full"
+        className="absolute -top-1/4 -left-1/4 size-[120vw]"
         style={{
+          borderRadius: "9999px",
           background:
             "radial-gradient(circle at center, oklch(0.78 0.18 65 / 0.10) 0%, transparent 55%)",
         }}
@@ -51,8 +52,9 @@ export function BackgroundFX() {
 
       {/* crimson counterweight */}
       <motion.div
-        className="absolute -bottom-1/3 -right-1/4 size-[100vw] rounded-full"
+        className="absolute -bottom-1/3 -right-1/4 size-[100vw]"
         style={{
+          borderRadius: "9999px",
           background:
             "radial-gradient(circle at center, oklch(0.62 0.22 25 / 0.08) 0%, transparent 50%)",
         }}
