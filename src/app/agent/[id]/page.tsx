@@ -8,6 +8,7 @@ import {mantleSepoliaTestnet} from "viem/chains";
 import {useReadContract} from "wagmi";
 
 import {CountUp} from "@/components/count-up";
+import {SourceBadge} from "@/components/source-badge";
 import {StatRadar} from "@/components/stat-radar";
 import {addresses, abis} from "@/lib/contracts";
 import {
@@ -50,7 +51,7 @@ export default function AgentPage({params}: {params: Promise<{id: string}>}) {
 
   return (
     <main className="flex-1">
-      <ProfileHeader id={id} data={data} chainCost={chainCost as number | undefined} isLoading={isLoading} />
+      <ProfileHeader id={id} data={data} chainCost={chainCost as number | undefined} isLoading={isLoading} source={data?.source ?? "mock"} />
       <StatStrip data={data} />
 
       <div className="mx-auto max-w-6xl px-6 py-1 text-center text-muted-foreground select-none">
@@ -95,11 +96,13 @@ function ProfileHeader({
   data,
   chainCost,
   isLoading,
+  source,
 }: {
   id: string;
   data: AgentDetail | undefined;
   chainCost: number | undefined;
   isLoading: boolean;
+  source: "live" | "mock";
 }) {
   const handle = handleForAgent(id);
   const tier = data?.agent?.tier ?? 5;
@@ -126,7 +129,10 @@ function ProfileHeader({
         </nav>
         <div className="mt-6 grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
           <motion.div initial={{opacity: 0, y: 16}} animate={{opacity: 1, y: 0}} transition={{duration: 0.6, ease}}>
-            <p className="label-mono">Agent profile</p>
+            <div className="flex items-center gap-3">
+              <p className="label-mono">Agent profile</p>
+              <SourceBadge source={source} />
+            </div>
             <h1 className="mt-3 scoreboard text-5xl font-medium tracking-tight text-foreground sm:text-7xl">
               #{id.padStart(3, "0")}
             </h1>

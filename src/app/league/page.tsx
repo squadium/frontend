@@ -90,7 +90,7 @@ export default function LeaguePage() {
                 <th className="px-4 py-3 text-left font-normal hidden sm:table-cell">Captain</th>
                 <th className="px-4 py-3 text-left font-normal hidden md:table-cell">Chip</th>
                 <th className="px-4 py-3 text-right font-normal">Score</th>
-                <th className="px-4 py-3 text-right font-normal hidden sm:table-cell">PnL %</th>
+                <th className="px-4 py-3 text-right font-normal hidden sm:table-cell">PnL %*</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -121,6 +121,9 @@ export default function LeaguePage() {
             </span>
           </div>
         </div>
+        <p className="mt-3 font-mono text-[10px] text-muted-foreground">
+          * PnL % derived from on-chain volume × tier multiplier (mock proxy; replace with live PnL feed in v2).
+        </p>
       </section>
     </main>
   );

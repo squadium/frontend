@@ -16,6 +16,7 @@ import {BaseError, ContractFunctionRevertedError} from "viem";
 import {mantleSepoliaTestnet} from "viem/chains";
 
 import {CountUp} from "@/components/count-up";
+import {SourceBadge} from "@/components/source-badge";
 import {
   AgentRow,
   TIER_CREDITS,
@@ -372,21 +373,6 @@ function Stat({label, value, hint}: {label: string; value: React.ReactNode; hint
   );
 }
 
-function SourceBadge({source, count}: {source: "live" | "mock"; count: number}) {
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 border px-3 py-1.5 text-[10px] tracking-widest uppercase ${
-        source === "live"
-          ? "border-primary/50 bg-primary/10 text-primary"
-          : "border-border text-muted-foreground"
-      }`}
-    >
-      <span className={`size-1 ${source === "live" ? "bg-primary animate-pulse" : "bg-muted-foreground"}`} />
-      {source === "live" ? `live · ${count} agents` : `mock · pre-indexer · ${count}`}
-    </span>
-  );
-}
-
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function DraftPage() {
@@ -523,7 +509,10 @@ export default function DraftPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-12">
-          <p className="label-mono">/ draft · calibration flywheel</p>
+          <div className="flex items-center gap-3">
+            <p className="label-mono">/ draft · calibration flywheel</p>
+            <SourceBadge source={source} count={agents.length} />
+          </div>
           <h1 className="mt-4 text-4xl font-medium uppercase tracking-tight sm:text-5xl">Squad builder</h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             Pick 5 ERC-8004 agents under a 100-credit salary cap. Promote one as Captain (2× scoring weight). One chip
@@ -653,7 +642,7 @@ export default function DraftPage() {
       </div>
 
       <section className="mx-auto max-w-6xl px-6 py-10">
-        {!isConnected ? (
+        {!isConnected && (
           <div className="relative border border-dashed border-border bg-card p-10 text-center">
             <p className="label-mono">[ wallet · disconnected ]</p>
             <p className="mt-4 max-w-md mx-auto text-sm text-muted-foreground">
@@ -663,12 +652,12 @@ export default function DraftPage() {
               <ConnectButton showBalance={false} />
             </div>
           </div>
-        ) : (
-          <div className="flex items-center justify-between gap-3">
+        )}
+        {isConnected && (
+          <div className="flex items-center gap-3">
             <p className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
               Connected · {address?.slice(0, 6)}…{address?.slice(-4)}
             </p>
-            <SourceBadge source={source} count={agents.length} />
           </div>
         )}
 
